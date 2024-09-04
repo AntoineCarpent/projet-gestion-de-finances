@@ -169,6 +169,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user) {
+            $user->transactions()->delete();
             $user->tokens()->delete();
             $user->delete();
             $user->forceDelete();
