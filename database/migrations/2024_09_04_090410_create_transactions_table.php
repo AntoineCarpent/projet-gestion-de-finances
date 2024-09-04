@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name');
-            $table->date('date')->unique();
+            $table->date('date');
             $table->decimal('deposit');
             $table->decimal('expense');
             $table->timestamps();

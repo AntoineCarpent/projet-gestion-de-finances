@@ -22,6 +22,6 @@ class transaction extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class); // Définit la relation inverse many-to-one
+        return $this->belongsTo(User::class);
     }
 }
