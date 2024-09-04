@@ -42,15 +42,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -58,8 +49,14 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    /**
+     * Relation "Un utilisateur a plusieurs transactions".
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class); // Définit la relation one-to-many
     }
 }
