@@ -2,21 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens; // Assurez-vous d'importer ce trait correctement
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable; // Utilisation du trait correct
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', // Si votre utilisateur a un champ rôle, assurez-vous qu'il est inclus ici
     ];
 
     /**
@@ -37,26 +32,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-        ];
-    }
-    /**
-     * Relation "Un utilisateur a plusieurs transactions".
-     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
     public function transactions()
     {
-        return $this->hasMany(Transaction::class); // Définit la relation one-to-many
+        return $this->hasMany(Transaction::class);
     }
 }
