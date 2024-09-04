@@ -18,3 +18,39 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+# Laravel & Composer
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/*.log
+.env
+.env.*
+.phpunit.result.cache
+phpunit.xml
+phpunit.xml.dist
+
+# Laravel Telescope
+/telescope
+
+# Laravel Horizon
+/horizon
+
+# Jetstream
+/public/storage
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+
+# IDE Files
+/.idea
+/.vscode
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# NPM & Yarn
+yarn-error.log
+npm-debug.log
+
